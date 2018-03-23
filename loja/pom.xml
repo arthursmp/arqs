@@ -5,4 +5,5 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Loja</name>
   <description>App eemplo disciplina Arquitetura de software</description>
+  <packaging>war</packaging>
 </project>
