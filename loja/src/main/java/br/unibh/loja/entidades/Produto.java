@@ -4,6 +4,7 @@ public class Produto {
 
 	private Long id;
 	private String descricao;
+	private Long version;
 	
 	public Produto(Long id, String descricao) {
 		this.id = id;
@@ -11,6 +12,15 @@ public class Produto {
 	}
 
 	public Produto() {
+	}
+
+		
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 
 	public Long getId() {

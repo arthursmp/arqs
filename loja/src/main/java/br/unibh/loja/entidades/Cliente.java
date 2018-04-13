@@ -14,6 +14,7 @@ public class Cliente {
 	private String email;
 	private Date dataNascimento;
 	private Date dataCadastro;
+	private Long Version;
 
 	public Cliente() {
 	}
@@ -31,6 +32,15 @@ public class Cliente {
 		this.email = email;
 		this.dataNascimento = dataNascimento;
 		this.dataCadastro = dataCadastro;
+	}
+
+	
+	public Long getVersion() {
+		return Version;
+	}
+
+	public void setVersion(Long version) {
+		Version = version;
 	}
 
 	public Long getId() {

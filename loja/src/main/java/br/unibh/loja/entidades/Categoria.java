@@ -10,6 +10,7 @@ public class Categoria {
 	private Categoria categoria;
 	private BigDecimal preco;
 	private String fabricante;
+	private Long version;
 
 	public Categoria() {
 	}
@@ -21,6 +22,15 @@ public class Categoria {
 		this.categoria = categoria;
 		this.preco = preco;
 		this.fabricante = fabricante;
+	}
+
+	
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 
 	public Long getId() {
