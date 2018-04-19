@@ -1,11 +1,25 @@
 package br.unibh.loja.entidades;
 
-public class Produto {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.persistence.Version;
 
+@Entity
+@Table(name = "tb_produto", uniqueConstraints = { @UniqueConstraint(columnNames = { "nome" }), })
+public class Produto {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
-	private Long version;
 	
+	@Version
+	private Long version;
+
 	public Produto(Long id, String descricao) {
 		this.id = id;
 		this.descricao = descricao;
@@ -14,7 +28,6 @@ public class Produto {
 	public Produto() {
 	}
 
-		
 	public Long getVersion() {
 		return version;
 	}
@@ -74,6 +87,5 @@ public class Produto {
 			return false;
 		return true;
 	}
-	
-	
+
 }
