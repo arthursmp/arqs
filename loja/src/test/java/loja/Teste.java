@@ -7,9 +7,9 @@ import java.util.Date;
 
 import org.junit.Test;
 
-import br.unibh.loja.entidades.Categoria;
-import br.unibh.loja.entidades.Cliente;
 import br.unibh.loja.entidades.Produto;
+import br.unibh.loja.entidades.Cliente;
+import br.unibh.loja.entidades.Categoria;
 
 public class Teste {
 
@@ -17,8 +17,8 @@ public class Teste {
 	public void testeProduto() {
 
 		// Produto
-		Produto p1 = new Produto(1L, "Caixa de sapato");
-		Produto p2 = new Produto(2L, "Caixa de sapato");
+		Categoria p1 = new Categoria(1L, "Caixa de sapato");
+		Categoria p2 = new Categoria(2L, "Caixa de sapato");
 
 		p2.toString();
 		p1.toString();
@@ -45,8 +45,8 @@ public class Teste {
 	public void testeCategoria() {
 		// Categoria
 
-		Categoria ca1 = new Categoria(6L, "Teste", "Teste01", new Categoria(), new BigDecimal(1.5), "nike");
-		Categoria ca2 = new Categoria(6L, "Teste", "Teste01", new Categoria(), new BigDecimal(1.5), "nike");
+		Produto ca1 = new Produto(6L, "Teste", "Teste01", new Produto(), new BigDecimal(1.5), "nike");
+		Produto ca2 = new Produto(6L, "Teste", "Teste01", new Produto(), new BigDecimal(1.5), "nike");
 
 		ca1.toString();
 		ca2.toString();
