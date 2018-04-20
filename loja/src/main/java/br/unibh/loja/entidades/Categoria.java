@@ -1,5 +1,6 @@
 package br.unibh.loja.entidades;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,12 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(length = 100, nullable = false)
 	private String descricao;
+	
+	@Column(length = 100, nullable = false)
+	private String nome;
 	
 	@Version
 	private Long version;
@@ -88,4 +94,14 @@ public class Categoria {
 		return true;
 	}
 
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	
+	
 }

@@ -4,11 +4,9 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "tb_cliente", uniqueConstraints = { @UniqueConstraint(columnNames = { "cpf" }),
 		@UniqueConstraint(columnNames = { "login" }) })
-
 public class Cliente {
 
 	@Id
@@ -17,34 +15,34 @@ public class Cliente {
 
 	@Column(length = 100, nullable = false)
 	private String nome;
-	
+
 	@Column(length = 15, nullable = false)
 	private String login;
-	
+
 	@Column(length = 100, nullable = false)
 	private String senha;
-	
+
 	@Column(length = 100, nullable = false)
 	private String perfil;
-	
+
 	@Column(columnDefinition = "CHAR(11) NOT NULL")
 	private String cpf;
-	
+
 	@Column(columnDefinition = "CHAR(14) NOT NULL")
 	private String telefone;
-	
+
 	@Column(length = 100, nullable = false)
 	private String email;
-	
+
 	@Temporal(TemporalType.DATE)
-	@Column(name="data_nascimento", nullable=false)
+	@Column(name = "data_nascimento", nullable = false)
 	private Date dataNascimento;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="data_cadastro", nullable=false)
+	@Column(name = "data_cadastro", nullable = false)
 	private Date dataCadastro;
-	
-	@Version	
+
+	@Version
 	private Long Version;
 
 	public Cliente() {

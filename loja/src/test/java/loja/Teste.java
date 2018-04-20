@@ -14,15 +14,15 @@ import br.unibh.loja.entidades.Categoria;
 public class Teste {
 
 	@Test
-	public void testeProduto() {
+	public void testeCategoria() {
 
-		// Produto
-		Categoria p1 = new Categoria(1L, "Caixa de sapato");
-		Categoria p2 = new Categoria(2L, "Caixa de sapato");
+		// Categoria
+		Categoria ca1 = new Categoria(1L, "Caixa de sapato");
+		Categoria ca2 = new Categoria(2L, "Caixa de sapato");
 
-		p2.toString();
-		p1.toString();
-		assertEquals(p1.equals(p2), false);
+		ca2.toString();
+		ca1.toString();
+		assertEquals(ca1.equals(ca2), false);
 
 	}
 
@@ -42,15 +42,15 @@ public class Teste {
 	}
 
 	@Test
-	public void testeCategoria() {
-		// Categoria
+	public void testeProduto() {
+		// Produto
 
-		Produto ca1 = new Produto(6L, "Teste", "Teste01", new Produto(), new BigDecimal(1.5), "nike");
-		Produto ca2 = new Produto(6L, "Teste", "Teste01", new Produto(), new BigDecimal(1.5), "nike");
+		Produto p1 = new Produto(6L, "Teste", "Teste01", new Categoria(), new BigDecimal(1.5), "nike");
+		Produto p2 = new Produto(6L, "Teste", "Teste01", new Categoria(), new BigDecimal(1.5), "nike");
 
-		ca1.toString();
-		ca2.toString();
-		assertEquals(ca1.equals(ca1), true);
+		p1.toString();
+		p2.toString();
+		assertEquals(p2.equals(p1), true);
 	}
 
 }

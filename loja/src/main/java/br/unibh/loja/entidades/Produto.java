@@ -2,26 +2,39 @@ package br.unibh.loja.entidades;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "tb_produto", uniqueConstraints = { @UniqueConstraint(columnNames = { "descricao" }), })
-
+@Table(name = "tb_produto", uniqueConstraints = { @UniqueConstraint(columnNames = { "nome" }), })
 public class Produto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(length = 100, nullable = false)
 	private String nome;
+	
+	@Column(length = 4000, nullable = false)
 	private String descricao;
-	private Produto categoria;
+	
+	@ManyToOne(optional=false)
+	@JoinColumn(name="id_categoria", referencedColumnName="id")
+	private Categoria categoria;
+	
+	@Column(precision=14, scale =2, nullable=false)
 	private BigDecimal preco;
+	
+	@Column(length = 100, nullable = false)
 	private String fabricante;
 	
 	@Version
@@ -30,7 +43,7 @@ public class Produto {
 	public Produto() {
 	}
 
-	public Produto(Long id, String nome, String descricao, Produto categoria, BigDecimal preco, String fabricante) {
+	public Produto(Long id, String nome, String descricao, Categoria categoria, BigDecimal preco, String fabricante) {
 		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
@@ -72,11 +85,11 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public Produto getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
 
-	public void setCategoria(Produto categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 
