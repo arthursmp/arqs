@@ -2,7 +2,21 @@ package br.unibh.loja.entidades;
 
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+import javax.persistence.Version;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "tb_cliente", uniqueConstraints = { @UniqueConstraint(columnNames = { "cpf" }),
@@ -13,18 +27,31 @@ public class Cliente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	
+	@NotBlank 
+	@Size(min=3, max=100)
+	@Pattern(regexp="[A-zÀ-ú.´ ]*", message="Caracteres permitidos: letras, espaços, ponto e aspas simples")
 	@Column(length = 100, nullable = false)
 	private String nome;
 
+	@NotNull
+	@Size(min=8, max=15)
+	@Pattern(regexp="[A-z 0-9]*", message="Caracteres permitidos:Deve permitir apenas caracteres alfanuméricos, maiúsculos\r\n" + 
+			"ou minúsculos, EXCETO caracteres especiais e espaço")
 	@Column(length = 15, nullable = false)
 	private String login;
 
+	@NotNull
+	@Size(min=0, max=100)
 	@Column(length = 100, nullable = false)
 	private String senha;
 
+	@Size(min=0, max=100)
+	@Pattern(regexp="[A-zÀ-ú.´ ]*", message="Caracteres permitidos: letras, espaços, ponto e aspas simples")
 	@Column(length = 100, nullable = false)
 	private String perfil;
 
+	@Pattern(regexp="\\d{11}", message="Fornecer 11 dígitos sem caracteres de separação")
 	@Column(columnDefinition = "CHAR(11) NOT NULL")
 	private String cpf;
 
