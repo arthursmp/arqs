@@ -5,11 +5,17 @@ import static org.junit.Assert.assertEquals;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
-import br.unibh.loja.entidades.Produto;
-import br.unibh.loja.entidades.Cliente;
 import br.unibh.loja.entidades.Categoria;
+import br.unibh.loja.entidades.Cliente;
+import br.unibh.loja.entidades.Produto;
+
+
+
+
 
 public class Teste {
 
@@ -52,5 +58,8 @@ public class Teste {
 		p2.toString();
 		assertEquals(p2.equals(p1), true);
 	}
+	
+	
+	
 
 }

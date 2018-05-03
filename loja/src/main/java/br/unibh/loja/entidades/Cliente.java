@@ -13,9 +13,11 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
@@ -34,18 +36,19 @@ public class Cliente {
 	@Column(length = 100, nullable = false)
 	private String nome;
 
-	@NotNull
+	@NotBlank	
 	@Size(min=8, max=15)
 	@Pattern(regexp="[A-z 0-9]*", message="Caracteres permitidos:Deve permitir apenas caracteres alfanuméricos, maiúsculos\r\n" + 
 			"ou minúsculos, EXCETO caracteres especiais e espaço")
 	@Column(length = 15, nullable = false)
 	private String login;
 
-	@NotNull
+	@NotBlank
 	@Size(min=0, max=100)
 	@Column(length = 100, nullable = false)
 	private String senha;
 
+	@NotBlank	
 	@Size(min=0, max=100)
 	@Pattern(regexp="[A-zÀ-ú.´ ]*", message="Caracteres permitidos: letras, espaços, ponto e aspas simples")
 	@Column(length = 100, nullable = false)
@@ -55,16 +58,22 @@ public class Cliente {
 	@Column(columnDefinition = "CHAR(11) NOT NULL")
 	private String cpf;
 
+	@Pattern(regexp="\\(\\d{2}\\)\\d{0,1}\\d{4}-\\d{4}", message="Fornecer um telefone no formato (99)09999-9999")
 	@Column(columnDefinition = "CHAR(14) NOT NULL")
 	private String telefone;
 
+	@Email	
+	@Size(min=0, max=100)
 	@Column(length = 100, nullable = false)
 	private String email;
-
+	
+	@NotNull	
 	@Temporal(TemporalType.DATE)
+	@Past
 	@Column(name = "data_nascimento", nullable = false)
 	private Date dataNascimento;
 
+	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data_cadastro", nullable = false)
 	private Date dataCadastro;

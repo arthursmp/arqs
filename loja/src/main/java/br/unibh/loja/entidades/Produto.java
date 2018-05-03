@@ -12,6 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "tb_produto", uniqueConstraints = { @UniqueConstraint(columnNames = { "nome" }), })
@@ -21,19 +27,31 @@ public class Produto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotBlank	
+	@Pattern(regexp="[A-zÀ-ú.´ ]*", message="Caracteres permitidos: letras, espaços, ponto e aspas simples")
+	@Size(min=1, max=100)
 	@Column(length = 100, nullable = false)
 	private String nome;
 	
+	@NotBlank	
+	@Pattern(regexp="[A-zÀ-ú.´ ]*", message="Caracteres permitidos: letras, espaços, ponto e aspas simples")
+	@Size(min=1, max=4000)
 	@Column(length = 4000, nullable = false)
 	private String descricao;
 	
+	@NotNull
 	@ManyToOne(optional=false)
 	@JoinColumn(name="id_categoria", referencedColumnName="id")
 	private Categoria categoria;
 	
+	@NotNull	
+	@DecimalMin("0.00")
 	@Column(precision=14, scale =2, nullable=false)
 	private BigDecimal preco;
 	
+	@NotBlank	
+	@Size(min=1, max=100)
+	@Pattern(regexp="[A-zÀ-ú.´ ]*", message="Caracteres permitidos: letras, espaços, ponto e aspas simples")
 	@Column(length = 100, nullable = false)
 	private String fabricante;
 	
