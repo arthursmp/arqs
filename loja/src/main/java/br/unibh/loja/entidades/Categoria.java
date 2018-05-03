@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "tb_categoria", uniqueConstraints = { @UniqueConstraint(columnNames = { "nome" }), })
+@Table(name = "tb_categoria", uniqueConstraints = { @UniqueConstraint(columnNames = { "descricao" }), })
 public class Categoria {
 	
 	@Id
@@ -23,14 +23,12 @@ public class Categoria {
 	private Long id;
 	
 	
-	@Column(length = 100, nullable = false)
-	private String descricao;
-	
 	@NotBlank 
 	@Size(min=1, max=100)
 	@Pattern(regexp="[A-zÀ-ú.´ ]*", message="Caracteres permitidos: letras, espaços, ponto e aspas simples")
 	@Column(length = 100, nullable = false)
-	private String nome;
+	private String descricao;
+	
 	
 	@Version
 	private Long version;
@@ -69,7 +67,7 @@ public class Categoria {
 
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + ", descricao=" + descricao + "]";
+		return "Categoria [id=" + id + ", descricao=" + descricao + "]";
 	}
 
 	@Override
@@ -103,14 +101,7 @@ public class Categoria {
 		return true;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
+	
 	
 	
 }

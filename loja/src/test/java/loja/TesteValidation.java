@@ -33,7 +33,7 @@ public class TesteValidation {
 	// Válido
 	@Test
 	public void testeValidacaoCliente1() {
-		Cliente c1 = new Cliente(1L, "Arthur", "arthur.pinheiro", "1q2w", "Teste01", "00000000001", "12345678",
+		Cliente c1 = new Cliente(1L, "Arthur", "arthur.pinheiro", "1q2w", "Teste01", "00000000001", "(99)09999-9999",
 				"arthur.teste@teste.com", new Date(), new Date());
 		System.out.print(c1);
 
@@ -47,7 +47,7 @@ public class TesteValidation {
 	// Inválido
 	@Test
 	public void testeValidacaoCliente2() {
-		Cliente c1 = new Cliente(1L, "", "arthur.pinheiro", "1q2w", "Teste01", "00000000001", "12345678",
+		Cliente c1 = new Cliente(1L, "", "arthur.pinheiro", "1q2w", "Teste01", "00000000001", "(99)09999-9999",
 				"arthur.teste@teste.com", new Date(), new Date());
 		System.out.print(c1);
 
