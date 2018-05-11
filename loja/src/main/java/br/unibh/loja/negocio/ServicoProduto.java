@@ -16,7 +16,7 @@ import br.unibh.loja.entidades.Produto;
 @LocalBean
 
 @NamedQueries({
-	@NamedQuery(name="ServicoProduto.findByName", query = "select o from Categoria o where o.descricao like :descricao")
+	@NamedQuery(name="Produto.findByName", query = "select o from Produto o where o.nome like :nome")
 })
 
 public class ServicoProduto implements DAO<Produto, Long> {

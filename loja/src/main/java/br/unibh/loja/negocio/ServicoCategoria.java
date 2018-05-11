@@ -7,11 +7,18 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import br.unibh.loja.entidades.Categoria;
 
 @Stateless
 @LocalBean
+
+@NamedQueries({
+	@NamedQuery(name="Categoria.findByName", query = "select o from Categoria o where o.descricao like :descricao")
+})
+
 public class ServicoCategoria implements DAO<Categoria, Long> {
 
 	@Inject
