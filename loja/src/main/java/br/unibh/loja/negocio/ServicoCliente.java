@@ -1,7 +1,5 @@
 package br.unibh.loja.negocio;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -14,7 +12,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 import org.joda.time.DateTime;
-import org.joda.time.Interval;
+import org.joda.time.Days;
+import org.joda.time.Years;
 
 import br.unibh.loja.entidades.Cliente;
 
@@ -24,40 +23,49 @@ import br.unibh.loja.entidades.Cliente;
 @NamedQueries({ @NamedQuery(name = "Cliente.findByName", query = "select o from Cliente o where o.cpf like :cpf") })
 
 public class ServicoCliente implements DAO<Cliente, Long> {
-	
+
 	@Inject
 	EntityManager em;
-	
+
 	@Inject
 	private Logger log;
 
 	public Cliente insert(Cliente t) throws Exception {
 		log.info("Persistindo " + t);
-		if(t.getPerfil().equals("Standard")) {
+		if (t.getPerfil().equals("Standard")) {
 			em.persist(t);
-		}else {
+		} else {
 			throw new Exception("Esse perfil de usuário não é válido");
 		}
-		
+
 		return t;
 	}
 
 	public Cliente update(Cliente t) throws Exception {
-		//log.info("Atualizando " + t);
-		//LocaDate today = LocalDate.now();
+		log.info("Atualizando " + t);
 		
-		//Interval intervalo = new Interval(today, t.getDataCadastro());
-		//Period periodo = intervalo.toPeriod();
+
+		// datacasdastro
+		Date dateC = t.getDataCadastro();
+		DateTime dateTimeC = new DateTime(dateC);
 		
-		//if(periodo.getYears()<1) {
-			//t.setPerfil("Standard");
-		//}
-		//if(periodo.getYears()<5 && periodo.getYears()>1) {
+		DateTime start = dateTimeC;
+		DateTime end = new DateTime();
+		
+		Days d = Days.daysBetween(start, end);
+		Years y = Years.yearsBetween(start, end);
+		  
+		//Análise de perfil de usuário
+
+		if (y.getYears() < 1) {
+			// t.setPerfil("Standard");
+		}
+		if (y.getYears() < 5 && y.getYears() > 1) {
 			t.setPerfil("Standard, Premium");
-		//}
-		//if(periodo.getYears()>5) {
-		///	t.setPerfil("Standard, Premium, Gold");
-		//}
+		}
+		if (y.getYears() > 5) {
+			t.setPerfil("Standard, Premium, Gold");
+		}
 		return em.merge(t);
 	}
 
