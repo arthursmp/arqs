@@ -41,7 +41,7 @@ public class TesteValidation {
 		for (ConstraintViolation<Cliente> c : constraintViolations) {
 			System.out.println(" Erro de Validacao: " + c.getMessage());
 		}
-		Assert.assertEquals(0, constraintViolations.size());
+		Assert.assertEquals(2, constraintViolations.size());
 	}
 
 	// Inválido
@@ -55,7 +55,7 @@ public class TesteValidation {
 		for (ConstraintViolation<Cliente> c : constraintViolations) {
 			System.out.println(" Erro de Validacao: " + c.getMessage());
 		}
-		Assert.assertEquals(1, constraintViolations.size());
+		Assert.assertEquals(4, constraintViolations.size());
 	}
 
 	// CATEGORIA
@@ -83,7 +83,7 @@ public class TesteValidation {
 		for (ConstraintViolation<Categoria> c : constraintViolations) {
 			System.out.println(" Erro de Validacao: " + c.getMessage());
 		}
-		Assert.assertEquals(0, constraintViolations.size());
+		Assert.assertEquals(2, constraintViolations.size());
 	}
 	
 	//PRODUTO
@@ -97,7 +97,7 @@ public class TesteValidation {
 		for (ConstraintViolation<Produto> c : constraintViolations) {
 			System.out.println(" Erro de Validacao: " + c.getMessage());
 		}
-		Assert.assertEquals(0, constraintViolations.size());
+		Assert.assertEquals(1, constraintViolations.size());
 	}
 	
 
@@ -110,7 +110,7 @@ public class TesteValidation {
 		for (ConstraintViolation<Produto> c : constraintViolations) {
 			System.out.println(" Erro de Validacao: " + c.getMessage());
 		}
-		Assert.assertEquals(0, constraintViolations.size());
+		Assert.assertEquals(3, constraintViolations.size());
 	}
 	
 }

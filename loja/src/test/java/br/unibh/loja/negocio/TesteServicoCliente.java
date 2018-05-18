@@ -73,7 +73,7 @@ public class TesteServicoCliente {
 	public void teste03_atualizar() throws Exception {
 		log.info("============> Iniciando o teste " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		Cliente c1 = (Cliente) sc.findByName("00000000001").get(0);
-		c1.setNome("Belo Horizonte modificado");
+		c1.setNome("arthur.sergio");
 		sc.update(c1);
 		Cliente aux = (Cliente) sc.findByName("CPF modificado").get(0);
 		assertNotNull(aux);

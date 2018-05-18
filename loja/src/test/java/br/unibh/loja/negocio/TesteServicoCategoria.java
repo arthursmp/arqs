@@ -32,7 +32,7 @@ public class TesteServicoCategoria{
 		// Cria o pacote que vai ser instalado no Wildfly para realizacao dos testes
 		return ShrinkWrap.create(WebArchive.class, "testeloja.war")
 				.addClasses(Categoria.class, Cliente.class, Produto.class, Resources.class, DAO.class,
-						ServicoCliente.class)
+						ServicoCategoria.class)
 				.addAsResource("META-INF/persistence.xml", "META-INF/persistence.xml")
 				.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 	}
@@ -41,16 +41,15 @@ public class TesteServicoCategoria{
 	@Inject
 	private Logger log;
 	@Inject
-	private ServicoCliente sc;
+	private ServicoCategoria sca;
 
 	@Test
 	public void teste01_inserirSemErro() throws Exception {
 		log.info("============> Iniciando o teste " + Thread.currentThread().getStackTrace()[1].getMethodName());
-		Cliente c1 = new Cliente(1L, "", "arthur.pinheiro", "1q2w", "Teste01", "00000000001", "(99)09999-9999",
-				"arthur.teste@teste.com", new Date(), new Date());
-		sc.insert(c1);
+		Categoria ca1 = new Categoria(1L, "Caixa de sapato");
+		sca.insert(ca1);
 		
-		Cliente aux = (Cliente) sc.findByName("00000000001").get(0);
+		Categoria aux = (Categoria) sca.findByName("Caixa de sapato").get(0);
 		assertNotNull(aux);
 		
 		log.info("============> Finalizando o teste " + Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -60,9 +59,8 @@ public class TesteServicoCategoria{
 	public void teste02_inserirComErro() throws Exception {
 		log.info("============> Iniciando o teste " + Thread.currentThread().getStackTrace()[1].getMethodName());
 		try {
-			Cliente c1 = new Cliente(1L, "", "arthur.pinheiro", " ", "Teste01", "00000000001", "(99)09999-9999",
-					"arthur.teste@teste.com", new Date(), new Date());
-			sc.insert(c1);
+			Categoria ca1 = new Categoria(1L, "Caixa@@@@@de sapato");;
+			sca.insert(ca1);
 		} catch (Exception e) {
 			assertTrue(checkString(e, "Caracteres permitidos: letras, espaços, ponto e aspas simples"));
 		}
@@ -72,10 +70,10 @@ public class TesteServicoCategoria{
 	@Test
 	public void teste03_atualizar() throws Exception {
 		log.info("============> Iniciando o teste " + Thread.currentThread().getStackTrace()[1].getMethodName());
-		Cliente c1 = (Cliente) sc.findByName("00000000001").get(0);
-		c1.setNome("Belo Horizonte modificado");
-		sc.update(c1);
-		Cliente aux = (Cliente) sc.findByName("CPF modificado").get(0);
+		Categoria ca1 = (Categoria) sca.findByName("Caixa de sapato").get(0);
+		ca1.setDescricao("Caixa de Sapato");
+		sca.update(ca1);
+		Categoria aux = (Categoria) sca.findByName("Caixa de Sapato").get(0);
 		assertNotNull(aux);
 		log.info("============> Finalizando o teste " + Thread.currentThread().getStackTrace()[1].getMethodName());
 	}
@@ -83,9 +81,9 @@ public class TesteServicoCategoria{
 	@Test
 	public void teste04_excluir() throws Exception {
 		log.info("============> Iniciando o teste " + Thread.currentThread().getStackTrace()[1].getMethodName());
-		Cliente c1 = (Cliente) sc.findByName("00000000001").get(0);
-		sc.delete(c1);
-		assertEquals(0, sc.findByName("usuário do cliente 00000000001 deletado").size());
+		Categoria ca1 = (Categoria) sca.findByName("Caixa de Sapato").get(0);
+		sca.delete(ca1);
+		assertEquals(0, sca.findByName("Caixa de Sapato").size());
 		log.info("============> Finalizando o teste " + Thread.currentThread().getStackTrace()[1].getMethodName());
 	}
 
