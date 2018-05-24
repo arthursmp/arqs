@@ -89,7 +89,7 @@ public class ServicoCliente implements DAO<Cliente, Long> {
 	@SuppressWarnings("unchecked")
 	public List<Cliente> findByName(String name) throws Exception {
 		log.info("Encontrando o " + name);
-		return em.createNamedQuery("Cliente.findByName").setParameter("nome", "%" + name + "%").getResultList();
+		return em.createNamedQuery("Cliente.findByName").setParameter("cpf", "%" + name + "%").getResultList();
 	}
 
 }

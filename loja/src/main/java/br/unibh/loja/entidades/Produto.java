@@ -41,7 +41,7 @@ public class Produto {
 	private String nome;
 	
 	@NotBlank	
-	@Pattern(regexp="[A-zÀ-ú.´ ]*", message="Caracteres permitidos: letras, espaços, ponto e aspas simples")
+	@Pattern(regexp="[A-zÀ-ú0-9.´ ]*", message="Caracteres permitidos: letras, espaços, ponto e aspas simples")
 	@Size(min=1, max=4000)
 	@Column(length = 4000, nullable = false)
 	private String descricao;
