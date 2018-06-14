@@ -88,7 +88,7 @@ public class Cliente {
 	private Date dataCadastro;
 
 	@Version
-	private Long Version;
+	private Long version;
 
 	public Cliente() {
 	}
@@ -109,11 +109,11 @@ public class Cliente {
 	}
 
 	public Long getVersion() {
-		return Version;
+		return version;
 	}
 
 	public void setVersion(Long version) {
-		Version = version;
+		version = version;
 	}
 
 	public Long getId() {
